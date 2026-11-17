@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimbu World 🍋</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ background:#080808;color:white;
+ font-family:Poppins,sans-serif;
+ overflow-x:hidden;
+}
+:root{--gold:#e9c46a;--yellow:#f8dc59}
+button{font-family:inherit;cursor:pointer}
+#lock{
+ position:fixed;inset:0;z-index:99;
+ background:radial-gradient(circle,#30230a,#050505 75%);
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:center;
+ text-align:center;padding:20px;
+}
+.lemon{font-size:80px;animation:float 2s infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(10deg)}}
+h1,h2{font-family:'Playfair Display',serif}
+#lock h1{font-size:55px;color:var(--gold);margin:15px}
+input{
+ padding:14px;border:1px solid #a68a44;
+ background:#151515;color:white;
+ border-radius:12px;text-align:center;
+ margin:15px;width:260px;
+}
+.btn{
+ padding:13px 25px;border-radius:30px;
+ border:0;background:linear-gradient(120deg,#f9e6a4,#c18b27);
+ color:#171006;font-weight:800;
+ margin:8px;
+}
+#site{display:none}
+nav{
+ position:sticky;top:0;background:#090909ee;
+ padding:16px;text-align:center;
+ color:var(--gold);letter-spacing:3px;
+ border-bottom:1px solid #8b702c;
+ z-index:10;font-weight:700;
+}
+section{
+ max-width:850px;margin:auto;
+ padding:70px 20px;text-align:center;
+}
+.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.hero h1{font-size:clamp(55px,12vw,90px);color:var(--gold)}
+.hero h2{font-size:30px;color:var(--yellow)}
+.tag{color:var(--gold);letter-spacing:4px;font-size:12px}
+.desc{color:#999;margin:15px 0 30px}
+.title{font-size:clamp(32px,7vw,48px);color:var(--gold);margin:15px}
+.card{
+ background:linear-gradient(145deg,#201d16,#111);
+ border:1px solid #a8894144;
+ border-radius:22px;padding:25px;
+ margin:18px auto;max-width:650px;
+ box-shadow:0 10px 40px #0008;
+}
+.card p{line-height:2;color:#ddd}
+.roast{text-align:left;display:flex;gap:15px;align-items:center}
+.roast span{font-size:35px}
+.roast b{color:var(--gold)}
+.gift{font-size:90px;cursor:pointer;display:inline-block;transition:.4s}
+.gift:hover{transform:scale(1.2) rotate(12deg)}
+.hidden{display:none}
+.reveal{border:1px solid var(--gold);padding:25px;border-radius:20px;background:#19160e;margin-top:20px}
+.game{
+ max-width:600px;margin:auto;background:#171717;
+ padding:25px;border:1px solid #77602d;border-radius:20px;
+}
+.score{font-size:40px;color:var(--yellow);font-weight:800}
+#catch{width:100%;padding:25px;font-size:45px;background:#28220f;border:1px solid #a88941;border-radius:15px;margin:15px 0}
+.option{
+ display:block;width:100%;padding:14px;
+ margin:10px 0;border-radius:12px;
+ background:#272319;color:white;border:1px solid #78632f;
+}
+.option:hover{background:#55431a}
+#result{color:var(--gold);margin:15px}
+#progress{height:7px;background:#333;margin:20px 0;border-radius:20px}
+#bar{height:100%;width:0;background:var(--gold);border-radius:20px}
+footer{padding:40px 15px;text-align:center;color:#777;border-top:1px solid #705526}
+@media(max-width:500px){section{padding:55px 17px}.card{padding:20px}}
+</style>
+</head>
+<body>
+
+<div id="lock">
+ <div class="lemon">🍋</div>
+ <p class="tag">EK KHAAS INSAAN KE LIYE</p>
+ <h1>HELLO NIMBU!</h1>
+ <p style="color:#aaa">Madam ji, aapka VIP surprise ready hai 😂</p>
+ <input id="pass" type="password" placeholder="Secret password daalo">
+ <button class="btn" onclick="unlock()">DARWAZA KHOLO 🔐</button>
+ <p id="error" style="color:#ff7777"></p>
+ <p style="color:#666;font-size:12px;margin-top:20px">Hint: nimbu123</p>
+</div>
+
+<div id="site">
+<nav>🍋 NIMBU KA PRIVATE KINGDOM 🍋</nav>
+
+<section class="hero">
+ <div class="lemon">🍋</div>
+ <p class="tag">THE ONE AND ONLY</p>
+ <h1>NIRMALA</h1>
+ <h2>AKA NIMBU 👑</h2>
+ <p style="color:#aaa;line-height:2;margin:20px">
+ Duniya ki sabse special, sabse dramatic<br>
+ aur thodi si khatti cousin ke naam! 😂
+ </p>
+ <button class="btn" onclick="go('welcome')">CHALO SHURU KARTE HAIN ↓</button>
+</section>
+
+<section id="welcome">
+ <p class="tag">01 — SWAGAT HAI MADAM</p>
+ <h2 class="title">Welcome Nimbu ❤️</h2>
+ <div class="card">
+ <p>
+ Toh finally madam ne apne VIP kingdom mein entry le hi li! 😂
+ <br><br>
+ Ye website specially tumhare liye banayi gayi hai.
+ Yahan tumhe milega pyaar, roast, games aur ek surprise gift.
+ <br><br>
+ Lekin ek baat yaad rakhna...
+ Yahan attitude dikhane ka koi fayda nahi,
+ kyunki website ka owner main hoon! 😎
+ </p>
+ </div>
+</section>
+
+<section>
+ <p class="tag">02 — ROAST KI DUKAAN</p>
+ <h2 class="title">Nimbu Ki Class 😂🔥</h2>
+ <p class="desc">Bura mat maanna madam, sab pyaar hai!</p>
+
+ <div class="card roast"><span>🍋</span><p><b>01. Nimbu Personality</b><br>Tumhara mood dekhkar mausam bhi confuse ho jaata hoga ki aaj dhoop niklegi ya baarish!</p></div>
+
+ <div class="card roast"><span>👑</span><p><b>02. Maharani Ji</b><br>Attitude aisa jaise duniya ki saari property tumhare naam ho!</p></div>
+
+ <div class="card roast"><span>😂</span><p><b>03. Drama Queen</b><br>Tumhari life mein background music ki jagah daily serial ka title song bajna chahiye.</p></div>
+
+ <div class="card roast"><span>🤡</span><p><b>04. Innocent Face</b><br>Galti khud karogi aur expression aisa dogi jaise duniya ne tumhare saath anyaay kar diya!</p></div>
+
+ <div class="card roast"><span>🤣</span><p><b>05. Special Talent</b><br>Dusron ko pareshan karna tumhara hobby nahi, full-time profession hai!</p></div>
+
+ <div class="card roast"><span>💅</span><p><b>06. Last Warning</b><br>Itni nakhrebaazi toh phone ke software update mein bhi nahi hoti!</p></div>
+</section>
+
+<section>
+ <p class="tag">03 — SURPRISE TIME</p>
+ <h2 class="title">Tumhara Gift 🎁</h2>
+ <p class="desc">Gift kholne ke liye dabao. Jaldi karo madam!</p>
+ <div class="gift" onclick="gift()">🎁</div>
+ <div id="giftbox" class="hidden reveal">
+ <h2 style="color:var(--gold)">SURPRISEEEEE! 💛</h2>
+ <div style="font-size:65px;margin:20px">👑💎</div>
+ <p>
+ Tumhe milta hai ek lifetime VIP cousin membership!
+ <br><br>
+ Is membership mein unlimited teasing,
+ free entertainment, random jokes,
+ chhoti-moti fights aur lifetime support included hai.
+ <br><br>
+ Is membership ko cancel karne ka option available nahi hai. 😂
+ <br><br>
+ <b style="color:var(--gold)">Tum meri favourite cousin ho! ❤️</b>
+ </p>
+ </div>
+</section>
+
+<section>
+ <p class="tag">04 — GAME ZONE</p>
+ <h2 class="title">Nimbu Pakdo! 🍋</h2>
+ <p class="desc">15 seconds mein jitne ho sake nimbu pakdo!</p>
+ <div class="game">
+ <p> TUMHARA SCORE </p>
+ <div class="score" id="score">0</div>
+ <p id="time">Time: 15 seconds</p>
+ <button class="btn" onclick="startGame()">GAME START KARO</button>
+ <button id="catch" onclick="catchIt()" disabled>🍋</button>
+ <p id="gameEnd"></p>
+ </div>
+</section>
+
+<section>
+ <p class="tag">05 — DIMAG KA TEST</p>
+ <h2 class="title">Nimbu Quiz 🧠</h2>
+ <p class="desc">Dekhte hain madam kitni smart hain!</p>
+ <div class="game">
+ <div id="progress"><div id="bar"></div></div>
+ <h3 id="question">Ready ho Nimbu?</h3>
+ <div id="answers"></div>
+ <p id="result"></p>
+ <button class="btn" id="next" onclick="next()">QUIZ SHURU KARO</button>
+ </div>
+</section>
+
+<section>
+ <p class="tag">06 — SPECIAL AWARD</p>
+ <h2 class="title">Nimbu Queen Award 🏆</h2>
+ <div class="card">
+ <div style="font-size:80px">👑</div>
+ <p style="color:var(--gold)">OFFICIALLY PRESENTED TO</p>
+ <h2 style="font-size:40px;margin:15px">NIRMALA</h2>
+ <p>
+ Duniya ki sabse dramatic cousin hone ke liye!
+ <br><br>
+ 🥇 Attitude Queen Award<br>
+ 🥇 Drama Queen Award<br>
+ 🥇 Nakhrebaaz Award<br>
+ 🥇 Favourite Cousin Award
+ <br><br>
+ <b style="color:var(--gold)">Lifetime Nimbu Queen! 🍋</b>
+ </p>
+ </div>
+</section>
+
+<section>
+ <p class="tag">07 — DIL SE</p>
+ <h2 class="title">Ek Chhoti Si Baat ❤️</h2>
+ <div class="card">
+ <p>
+ Nirmala, mazaak apni jagah aur roasting apni jagah.
+ <br><br>
+ Lekin sach mein tum meri favourite cousin sisters mein se ek ho.
+ <br><br>
+ Chahe hum kitna bhi ek dusre ko tease karein,
+ kitni bhi bakchodi karein ya chhoti-moti ladai ho,
+ tumhari jagah hamesha special rahegi.
+ <br><br>
+ Hamesha khush rehna, apne sapne poore karna
+ aur life mein bahut aage jaana.
+ <br><br>
+ Aur haan, apna attitude thoda kam kar dena...
+ mazaak kar raha hoon, badalna mat! 😂
+ <br><br>
+ <b style="color:var(--gold)">Love you Nimbu! ❤️🍋</b>
+ </p>
+ </div>
+ <button class="btn" onclick="finalSurprise()">LAST SURPRISE DEKHO ✨</button>
+</section>
+
+<footer>
+ <p>🍋 THE NIMBU COLLECTION 🍋</p>
+ <p>Sirf Nirmala ke liye banayi gayi special website.</p>
+ <p style="color:var(--gold);margin-top:10px">Made with love & unlimited roasting 😂❤️</p>
+</footer>
+</div>
+
+<script>
+function unlock(){
+ if(document.getElementById('pass').value==='nimbu123'){
+  document.getElementById('lock').style.display='none';
+  document.getElementById('site').style.display='block';
+  window.scrollTo(0,0);
+ }else{
+  document.getElementById('error').innerText='Galat password Nimbu! 😂 Dobara try karo.';
+ }
+}
+document.getElementById('pass').addEventListener('keydown',e=>{
+ if(e.key==='Enter')unlock();
+});
+function go(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function gift(){
+ document.getElementById('giftbox').classList.remove('hidden');
+}
+
+let score=0,time=15,running=false,interval;
+function startGame(){
+ if(running)return;
+ score=0;time=15;running=true;
+ document.getElementById('score').innerText=score;
+ document.getElementById('gameEnd').innerText='';
+ document.getElementById('catch').disabled=false;
+ document.getElementById('time').innerText='Time: '+time+' seconds';
+ interval=setInterval(()=>{
+  time--;
+  document.getElementById('time').innerText='Time: '+time+' seconds';
+  if(time<=0){
+   clearInterval(interval);running=false;
+   document.getElementById('catch').disabled=true;
+   document.getElementById('gameEnd').innerText='Game over Nimbu! Tumhara score: '+score+' 🍋';
+  }
+ },1000);
+}
+function catchIt(){
+ if(!running)return;
+ score++;
+ document.getElementById('score').innerText=score;
+ document.getElementById('catch').innerText=['🍋','🍋✨','🍋💛'][Math.floor(Math.random()*3)];
+}
+
+const questions=[
+ {q:'Is ghar ki official Nimbu Queen kaun hai?',a:['Nirmala','Main','Padosi','Koi nahi'],c:0},
+ {q:'Nimbu ka official emoji kaunsa hai?',a:['🍎','🍋','🍉','🍌'],c:1},
+ {q:'Nimbu ki sabse special quality kya hai?',a:['Drama','Nakhre','Attitude','Sabhi'],c:3},
+ {q:'Nirmala ko kya milna chahiye?',a:['Crown 👑','Dher saara pyaar ❤️','Khushiyan','Sab kuch!'],c:3},
+ {q:'Nimbu ko kaun sabse zyada tease karta hai?',a:['Tumhara favourite cousin 😂','TV','Google','Koi nahi'],c:0}
+];
+let qi=0,points=0,answered=false,started=false;
+
+function showQuestion(){
+ answered=false;
+ document.getElementById('question').innerText=questions[qi].q;
+ document.getElementById('bar').style.width=(qi/questions.length*100)+'%';
+ document.getElementById('result').innerText='';
+ document.getElementById('next').innerText='AGLA SAWAL';
+ let area=document.getElementById('answers');
+ area.innerHTML='';
+ questions[qi].a.forEach((a,i)=>{
+  let b=document.createElement('button');
+  b.className='option';b.innerText=a;
+  b.onclick=()=>answer(i);
+  area.appendChild(b);
+ });
+}
+function answer(i){
+ if(answered)return;
+ answered=true;
+ if(i===questions[qi].c){
+  points++;
+  document.getElementById('result').innerText='Bilkul sahi! Wah Nimbu! 😂';
+ }else{
+  document.getElementById('result').innerText='Galat jawab! Thoda aur dimag lagao madam 😭';
+ }
+}
+function next(){
+ if(!started){
+  started=true;showQuestion();return;
+ }
+ if(!answered)return;
+ if(qi===questions.length-1){
+  document.getElementById('question').innerText='QUIZ KHATAM! 🏆';
+  document.getElementById('answers').innerHTML='';
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('result').innerText='Tumhara score: '+points+'/'+questions.length+'! ❤️';
+  document.getElementById('next').innerText='DOBARA KHELO';
+  started=false;qi=0;points=0;return;
+ }
+ qi++;showQuestion();
+}
+function finalSurprise(){
+ alert('🍋 SURPRISE NIRMALA! 🍋\n\nTum duniya ki sabse special Nimbu ho! 😂❤️\n\nHamesha khush rehna meri favourite cousin!');
+}
+</script>
+</body>
+</html>
